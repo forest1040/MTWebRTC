@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <style>
+      body {
+        background: black;
+        color:#CCCCCC; 
+      }
+      canvas {
+        background: black;
+      }
+      div {
+        float: left;
+        border :1px solid #444444;
+        padding:3px;
+        margin: 3px;
+        background:#3B3B3B;
+      }
+      label {
+        display: block;
+        clear: both;
+      }
+      label > input {
+        width: 3em;
+        float: right;
+      }
+
+    </style>
+    <script src="tracker.js"></script>
+    <script src="compute.js"></script>
+    <script src="media.js"></script>
+  </head>
+
+  <body>
+    <h1>Movement tracker + WebRTC</h1>
+    <div>
+      <h2>Args:</h2>
+      <label> Threshold (0 -&gt; 255) <input type="text" value="230" id="threshold"/> </label>
+      <label> Work factor <input type="text" value="20" id="factor"/> </label>
+      <label> Zoom factor <input type="text" value="0.5" id="zfactor"/> </label>
+      <label> Sensibility <input type="text" value="0" id="sensibility"/> </label>
+      <label> <input type="checkbox" id="dv"/>
+        Display video 
+      </label>
+      <label> <input type="checkbox" id="dd" checked="true"/>
+        Display diff
+      </label>
+      <h2>Matrix:</h2>
+      <label> <input type="radio" name="m" value="sobel" checked="true"/>
+        Sobel
+      </label>
+      <label> <input type="radio" name="m" value="kirsch"/>
+        Kirsch
+      </label>
+      <label> <input type="radio" name="m" value="harris"/>
+        Harris
+      </label>
+      <h2>fps</h2>
+      <p id="fps"/>
+      <input type="button" onclick="processor.video.play()" value="Go !"/>
+      
+    </div>
+    <div>
+      <video id="v1" autobuffer="true"/>
+      <canvas id="c0" width="1" height="1"/>
+      <canvas id="c1" width="100" height="100"/>
+      <br/>
+      <canvas id="c2" width="1" height="1"/>
+    </div>
+  </body>
+</html>
+
